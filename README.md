@@ -23,7 +23,6 @@ Standard telemetry links often transmit raw, unencrypted UDP datagrams over loca
 |   Local     | ------------------------> |   Proxy Node A   | ======================> |   Proxy Node B   | ------------------------> |   Local     |
 | Application | <------------------------ |   (Encrypt/Tx)   | <====================== |   (Decrypt/Rx)   | <------------------------ | Application |
 +-------------+     Plain UDP (14550)     +------------------+     Public / RF Link    +------------------+     Plain UDP (14551)     +-------------+
-
 ```
 
 1. **Ingress (`local_sock`):** Listens on `0.0.0.0:<local-in-port>` (default `14551`) for incoming plaintext datagrams from the local flight controller bridge or GCS software.
