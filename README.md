@@ -52,7 +52,6 @@ Before compiling, create a `key.h` file in the root directory defining your shar
 #define PSK_KEY "YourStrongPreSharedSecretKey"
 
 #endif
-
 ```
 
 
@@ -63,14 +62,12 @@ Before compiling, create a `key.h` file in the root directory defining your shar
    ```
    git clone https://github.com/Kurwei/<uav-proxy>.git
    cd <uav-proxy>
-   
    ```
 
 2. **Create your local key header from the example template:**
 
    ```
    cp key.h.example key.h
-   
    ```
 
 3. Edit `key.h` and define your `PSK_KEY`.
@@ -81,7 +78,6 @@ Before compiling, create a `key.h` file in the root directory defining your shar
    make
    # or compile directly with gcc:
    gcc -O2 -Wall -Wextra -o udp-proxy main.c
-   
    ```
 
 ## CLI Options & Usage
@@ -116,7 +112,6 @@ Assume **Node A (UAV Companion Computer)** is at `192.168.1.100` and **Node B (G
   --tun-in-port 9001 \
   --tun-out-ip 192.168.1.50 \
   --tun-out-port 9000
-
 ```
 
 **On Node B (GCS Side):**
@@ -132,7 +127,6 @@ Assume **Node A (UAV Companion Computer)** is at `192.168.1.100` and **Node B (G
   --tun-in-port 9000 \
   --tun-out-ip 192.168.1.100 \
   --tun-out-port 9001
-
 ```
 
 ## Security Disclaimer
