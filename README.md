@@ -55,7 +55,6 @@ Before compiling, create a `key.h` file in the root directory defining your shar
 
 ```
 
-> **Note:** Add `key.h` to your `.gitignore` file to prevent committing secret keys to version control.
 
 ### 2. Setup & Build
 
