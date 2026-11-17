@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
     memset(&local_in_addr, 0, sizeof(local_in_addr));
     local_in_addr.sin_family = AF_INET;
     local_in_addr.sin_port = htons(local_in_port);
-    local_in_addr.sin_addr.s_addr = INADDR_ANY;
+    local_in_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
     memset(&local_out_addr, 0, sizeof(local_out_addr));
     local_out_addr.sin_family = AF_INET;
@@ -162,6 +162,8 @@ int main(int argc, char *argv[]) {
 
             if(n < 0) { perror("Packet reciving error!"); continue; }
 
+            if (sender_addr.sin_addr.s_addr != htonl(INADDR_LOOPBACK)) { continue; }
+            
             encrypt_data(buffer, n);
 
             ssize_t send_bytes = sendto(tunnel_sock, buffer, n, 0, (struct sockaddr *)&tun_out_addr, sizeof(tun_out_addr));
@@ -171,10 +173,14 @@ int main(int argc, char *argv[]) {
         }
         if(fds[1].fd != -1 && fds[1].revents & POLLIN) {
 
+            sender_addr_len = sizeof(sender_addr);
+            
             ssize_t n = recvfrom(tunnel_sock, buffer, BUFFER_SIZE, 0, (struct sockaddr *)&sender_addr, &sender_addr_len);
 
             if(n < 0) { perror("Packet reciving error!"); continue; }
 
+            if (sender_addr.sin_addr.s_addr != tun_out_addr.sin_addr.s_addr) { continue; }
+            
             decrypt_data(buffer, n);
 
             ssize_t send_bytes = sendto(local_sock, buffer, n, 0, (struct sockaddr *)&local_out_addr, sizeof(local_out_addr));
