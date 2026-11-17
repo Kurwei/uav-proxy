@@ -76,7 +76,7 @@ Before compiling, create a `key.h` file in the root directory defining your shar
    ```
    make
    # or compile directly with gcc:
-   gcc -O2 -Wall -Wextra -o udp-proxy main.c
+   gcc -O2 -Wall -Wextra -o udp-proxy proxy.c
    ```
 
 ## CLI Options & Usage
