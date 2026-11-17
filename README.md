@@ -59,8 +59,8 @@ Before compiling, create a `key.h` file in the root directory defining your shar
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/Kurwei/<uav-proxy>.git
-   cd <uav-proxy>
+   git clone https://github.com/Kurwei/uav-proxy.git
+   cd uav-proxy
    ```
 
 2. **Create your local key header from the example template:**
